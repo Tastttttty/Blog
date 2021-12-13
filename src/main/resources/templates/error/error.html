@@ -35,7 +35,9 @@
 
   <div>
     <div th:utext="'&lt;!--'" th:remove="tag"></div>
+<!--                     从后端传来的url-->
     <div th:utext="'Failed Request URL : ' + ${url}" th:remove="tag"></div>
+<!--                    从后端传来的异常信息-->
     <div th:utext="'Exception message : ' + ${exception.message}" th:remove="tag"></div>
     <ul th:remove="tag">
       <li th:each="st : ${exception.stackTrace}" th:remove="tag"><span th:utext="${st}" th:remove="tag"></span></li>
@@ -51,8 +53,8 @@
       <div class="four wide column">
         <div style="font-size: large;font-weight: bold" class="ui inverted m-text-thin m-text-spaced m-margin-top-max" >联系我</div>
         <div class="ui inverted link list">
-          <div href="#" class="m-text-thin">Email：onestarlr@hotmail.com</div>
-          <div href="#" class="m-text-thin">QQ：316392836</div>
+          <div href="#" class="m-text-thin">Email：</div>
+          <div href="#" class="m-text-thin">QQ：1012453015</div>
         </div>
       </div>
 
