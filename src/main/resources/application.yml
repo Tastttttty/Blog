@@ -1,0 +1,22 @@
+
+#公共配置和表明当前配置文件
+spring:
+#  模板
+  thymeleaf:
+    mode: HTML
+  profiles:
+    active: pro
+
+
+mybatis:
+#  扫描包
+  type-aliases-package: com.tasty.dao
+#  xml配置文件
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+#    开启驼峰转换命名
+    map-underscore-to-camel-case: true
+
+#  8008端口开启访问
+server:
+  port: 8008

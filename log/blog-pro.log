@@ -1,0 +1,8 @@
+2021-12-13 18:32:07.311  INFO 13332 --- [main] com.tasty.MyblogApplication              : Starting MyblogApplication using Java 16.0.2 on LAPTOP-KSFAKUK8 with PID 13332 (C:\Users\LovinEveryMinute\Desktop\Java\Myblog\target\classes started by LovinEveryMinute in C:\Users\LovinEveryMinute\Desktop\Java\Myblog)
+2021-12-13 18:32:07.311  INFO 13332 --- [main] com.tasty.MyblogApplication              : The following profiles are active: pro
+2021-12-13 18:32:08.541  WARN 13332 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.tasty]' package. Please check your configuration.
+2021-12-13 18:32:09.471  INFO 13332 --- [main] com.tasty.MyblogApplication              : Started MyblogApplication in 2.718 seconds (JVM running for 3.433)
+2021-12-13 18:33:19.710  INFO 15284 --- [main] com.tasty.MyblogApplication              : Starting MyblogApplication using Java 16.0.2 on LAPTOP-KSFAKUK8 with PID 15284 (C:\Users\LovinEveryMinute\Desktop\Java\Myblog\target\classes started by LovinEveryMinute in C:\Users\LovinEveryMinute\Desktop\Java\Myblog)
+2021-12-13 18:33:19.717  INFO 15284 --- [main] com.tasty.MyblogApplication              : The following profiles are active: pro
+2021-12-13 18:33:20.218  WARN 15284 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.tasty]' package. Please check your configuration.
+2021-12-13 18:33:20.908  INFO 15284 --- [main] com.tasty.MyblogApplication              : Started MyblogApplication in 1.634 seconds (JVM running for 2.153)
