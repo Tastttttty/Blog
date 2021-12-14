@@ -5,10 +5,7 @@ import com.tasty.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
@@ -19,7 +16,7 @@ import javax.servlet.http.HttpSession;
  *@description:登录页面视图控制器
  */
 @Controller
-@RequestMapping("/admin") //总视图
+@RequestMapping(path="/admin", method = {RequestMethod.GET,RequestMethod.POST}) //总视图
 public class LoginController {
 
     //自动装配service层实例
@@ -35,9 +32,14 @@ public class LoginController {
 
     //登录操作
     @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password,
-                        HttpSession session, RedirectAttributes attributes){
-        //从前端输入的账户和秘密通过调用service对象同数据库进行比对，若比对成功则返回对象，若失败则返回null
+    public String login(@RequestParam(value = "username") String username,//这里的value对应html中的name属性
+                        @RequestParam(value = "password") String password,
+                        HttpSession session,
+                        RedirectAttributes attributes){
+        //从前端输入的账户和密码通过调用service对象同数据库进行比对，若比对成功则返回对象，若失败则返回null
+
+        System.out.println(username+"  "+password);
+
         User user = userService.CheckUser(username, password);
         //账户密码存在时,将密码清0后，将登录信息传入session中
         if(user != null){
