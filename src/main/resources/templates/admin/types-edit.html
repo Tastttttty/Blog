@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>博客管理</title>
+  <title>分类新增</title>
   <link href="../../static/images/me.jpg" th:href="@{/images/me.jpg}" rel="icon" type="image/x-ico">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
   <link rel="stylesheet" href="../../static/css/me.css" th:href="@{/css/me.css}">
@@ -16,9 +16,9 @@
     <div class="ui inverted secondary stackable menu">
       <h2 class="ui olive header item" style="font-family: STSong">管理后台</h2>
       <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>文章管理</a>
-      <a href="#" class="m-item item m-mobile-hide" th:href="@{/admin/types}"><i class="clone outline icon"></i>分类管理</a>
+      <a href="#" class="active m-item item m-mobile-hide"><i class="clone outline icon"></i>分类管理</a>
       <a href="#" class="m-item item m-mobile-hide"><i class="pencil alternate icon"></i>友链管理</a>
-      <a href="#" class=" m-item item m-mobile-hide"><i class="image icon"></i>相册管理</a>
+      <a href="#" class="m-item item m-mobile-hide"><i class="image icon"></i>相册管理</a>
       <div class="right m-item m-mobile-hide menu">
         <div class="ui dropdown  item">
           <div class="text">
@@ -27,7 +27,7 @@
           </div>
           <i class="dropdown icon"></i>
           <div class="menu">
-            <a href="#" class="item">注销</a>
+            <a href="#"class="item">注销</a>
           </div>
         </div>
       </div>
@@ -38,21 +38,50 @@
   </a>
 </nav>
 
-<br>
-<br>
-<br>
+
+  <div class="m-padded-tb-hugex">
+  <div class="ui attached pointing menu">
+    <div class="ui container">
+      <div class="right menu">
+        <a href="#" class="teal active item">新增</a>
+        <a href="#" th:href="@{/admin/types}" class="item">列表</a>
+      </div>
+    </div>
+  </div>
+  </div>
 
   <!--中间内容-->
-  <div  class="m-padded-tb-massivex">
+  <div  class="m-container-small m-padded-tb-massive">
     <div class="ui container">
-      <div class="ui success large  message">
-        <p align="center">念念不忘，必有回响</p>
-      </div>
+      <form th:action="@{/admin/types/update}" method="post" class="ui form">
+        <input type="hidden" name="id">
+        <div class=" field">
+          <div class="ui left labeled input">
+            <label class="ui teal basic label">名称</label>
+<!--            提交的参数包括分类的id和全新的分类的名字, 这里的type是跳转页面时，随后端在model中传来的参数-->
+            <input type="hidden" name="id" th:value="${type.id}"/>
+            <input type="text" placeholder="分类名称" name="name"/>
 
-      <img src="../../static/images/backimg.jpg" alt="" class="ui rounded bordered fluid image">
+          </div>
+        </div>
+        <div class="ui error message"></div>
+        <div class="ui mini negative message">提示：不能添加重复的分类</div>
+        <div class="ui right aligned container">
+          <button type="button" class="ui button" onclick="window.history.go(-1)" >返回</button>
+          <button class="ui teal submit button">提交</button>
+        </div>
+      </form>
     </div>
   </div>
 
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
   <!--底部栏-->
 <footer class="ui inverted vertical segment m-padded-tb-massive m-opacity">
   <!--容器-->
@@ -115,8 +144,10 @@
 
 </footer>
 
+
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+
 
   <script>
 
@@ -167,6 +198,18 @@
 
     $('.ui.dropdown').dropdown({
       on : 'hover'
+    });
+
+    $('.ui.form').form({
+      fields : {
+        title : {
+          identifier: 'name',
+          rules: [{
+            type : 'empty',
+            prompt: '请输入分类名称'
+          }]
+        }
+      }
     });
 
   </script>

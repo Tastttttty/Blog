@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tasty.dao.TypeDao">
+
+    <select id="getAllType" resultType="com.tasty.model.Type">
+        select * from myblog.t_type;
+    </select>
+
+    <insert id="saveType" parameterType="com.tasty.model.Type">
+        insert into myblog.t_type values (#{id}, #{name});
+    </insert>
+
+    <update id="updateType" parameterType="com.tasty.model.Type">
+        update myblog.t_type set name = #{name} where id = #{id};
+    </update>
+
+    <delete id="deleteType" >
+        delete from myblog.t_type where id = #{id};
+    </delete>
+
+    <select id="getTypeByName" resultType="com.tasty.model.Type">
+        select * from myblog.t_type where name = #{name};
+    </select>
+
+    <select id="getTypeById" resultType="com.tasty.model.Type">
+        select * from myblog.t_type where id = #{id};
+    </select>
+</mapper>

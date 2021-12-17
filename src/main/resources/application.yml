@@ -20,3 +20,7 @@ mybatis:
 #  8008端口开启访问
 server:
   port: 8008
+
+#pagehelper配置
+pagehelper:
+  helper-dialect: mysql
