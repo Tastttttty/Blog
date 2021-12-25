@@ -7,9 +7,7 @@ package com.tasty.service;
  */
 
 import com.tasty.model.Blog;
-import com.tasty.model.extraModel.queryvo.BlogQuery;
-import com.tasty.model.extraModel.queryvo.SearchBlog;
-import com.tasty.model.extraModel.queryvo.ShowBlog;
+import com.tasty.model.extraModel.queryvo.*;
 
 import java.util.List;
 
@@ -27,4 +25,25 @@ public interface BlogService {
     ShowBlog getBlogById(Long id);//从数据库t_blog查出对应的博客，修改其返回类型为ShowBlog
 
     List<BlogQuery> searchByTitleAndType(SearchBlog searchBlog);
+
+    //查询首页最新博客列表信息
+    List<FirstPageBlog> getAllFirstPageBlog();
+
+    //查询首页最新推荐信息
+    List<RecommendBlog> getRecommendedBlog();
+
+    //搜索博客列表
+    List<FirstPageBlog> getSearchBlog(String query);
+
+    //统计博客总数
+    Integer getBlogTotal();
+
+    //统计访问总数
+    Integer getBlogViewTotal();
+
+    //统计评论总数
+    Integer getBlogCommentTotal();
+
+    //统计留言总数
+    Integer getBlogMessageTotal();
 }

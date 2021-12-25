@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.tasty.dao.BlogDao">
 
+
+
+<!--    admin的博客相关-->
+
     <!--新增保存文章-->
     <insert id="saveBlog" parameterType="com.tasty.model.Blog">
         insert into myblog.t_blog (id,title, content, first_picture, flag,
@@ -75,4 +79,64 @@
             </if>
         </where>
     </select>
+
+
+
+
+<!--    首页博客显示相关-->
+
+
+
+    <!--查询首页最新博客列表信息-->
+    <resultMap id="firstPageBlog" type="com.tasty.model.extraModel.queryvo.FirstPageBlog">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="firstPicture" column="first_picture"/>
+        <result property="views" column="views"/>
+        <result property="commentCount" column="comment_count"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="description" column="description"/>
+        <result property="typeName" column="name"/>
+        <result property="nickname" column="nickname"/>
+        <result property="avatar" column="avatar"/>
+    </resultMap>
+    <select id="getFirstPageBlog" resultMap="firstPageBlog">
+        select b.id,b.title,b.first_picture, b.views, b.comment_count,b.create_time,b.update_time,b.description,
+               t.name ,
+               u.nickname, u.avatar
+        from myblog.t_blog b, myblog.t_type t,myblog.t_user u
+        where b.type_id = t.id and  u.id = b.user_id order by b.create_time desc
+    </select>
+
+    <!--查询推荐文章-->
+    <select id="getAllRecommendBlog" resultType="com.tasty.model.extraModel.queryvo.RecommendBlog">
+        select * from myblog.t_blog where t_blog.recommend = true order by t_blog.create_time desc limit 4;
+    </select>
+
+    <!--搜索文章-->
+    <select id="getSearchBlog" resultMap="firstPageBlog">
+--         <bind name="pattern" value="'%' + query + '%'" />
+        select b.id,b.title,b.first_picture, b.views,b.comment_count,b.update_time,b.description,
+        t.name ,
+        u.nickname, u.avatar
+        from myblog.t_blog b, myblog.t_type t,myblog.t_user u
+        where b.type_id = t.id and  u.id = b.user_id and (b.title like #{pattern} or b.content like  #{pattern})
+        order by b.update_time desc
+    </select>
+
+    <!--统计博客信息-->
+    <select id="getBlogTotal" resultType="Integer">
+        select count(*) from myblog.t_blog
+    </select>
+    <select id="getBlogViewTotal" resultType="Integer">
+        select coalesce (sum(views),0) from myblog.t_blog
+    </select>
+    <select id="getBlogCommentTotal" resultType="Integer">
+        select count(*) from myblog.t_comment
+    </select>
+    <select id="getBlogMessageTotal" resultType="Integer">
+        select count(*) from myblog.t_message
+    </select>
+
 </mapper>

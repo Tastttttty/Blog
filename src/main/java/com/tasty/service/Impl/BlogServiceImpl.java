@@ -8,9 +8,7 @@ package com.tasty.service.Impl;
 
 import com.tasty.dao.BlogDao;
 import com.tasty.model.Blog;
-import com.tasty.model.extraModel.queryvo.BlogQuery;
-import com.tasty.model.extraModel.queryvo.SearchBlog;
-import com.tasty.model.extraModel.queryvo.ShowBlog;
+import com.tasty.model.extraModel.queryvo.*;
 import com.tasty.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -71,5 +69,55 @@ public class BlogServiceImpl implements BlogService {
             searchBlog.setTitle("%%");
         }
         return blogDao.searchByTitleAndType(searchBlog);
+    }
+
+    //查询首页最新博客列表信息
+    @Override
+    public List<FirstPageBlog> getAllFirstPageBlog() {
+        return blogDao.getFirstPageBlog();
+    }
+
+    //查询首页最新推荐信息
+    @Override
+    public List<RecommendBlog> getRecommendedBlog() {
+        List<RecommendBlog> allRecommendBlog = blogDao.getAllRecommendBlog();
+        return allRecommendBlog;
+    }
+
+    //搜索博客列表
+    @Override
+    public List<FirstPageBlog> getSearchBlog(String query) {
+            //这里一定要注意对应sql语句中的空指针异常,这是在java中解决的方法
+        if(query==null){
+            query="%%";
+        }
+        else {
+            query="%"+query+"%";
+        }
+        return blogDao.getSearchBlog(query);
+    }
+
+    //统计博客总数
+    @Override
+    public Integer getBlogTotal() {
+        return blogDao.getBlogTotal();
+    }
+
+    //统计访问总数
+    @Override
+    public Integer getBlogViewTotal() {
+        return blogDao.getBlogViewTotal();
+    }
+
+    //统计评论总数
+    @Override
+    public Integer getBlogCommentTotal() {
+        return blogDao.getBlogCommentTotal();
+    }
+
+    //统计留言总数
+    @Override
+    public Integer getBlogMessageTotal() {
+        return blogDao.getBlogMessageTotal();
     }
 }
