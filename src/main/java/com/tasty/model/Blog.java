@@ -42,7 +42,7 @@ public class Blog {
     private Boolean recommend;
     private Date createTime;
     private Date updateTime;
-
+    private String description;
  /*
 分类（type）、用户（user）、评论集合（comments）以及分类id（typeId）、用户id（userId），
 用来实现Mybatis的多表查询和相关功能。

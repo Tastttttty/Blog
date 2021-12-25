@@ -7,6 +7,13 @@
   <link href="../../static/images/me.jpg" th:href="@{/images/me.jpg}" rel="icon" type="image/x-ico">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
   <link rel="stylesheet" href="../../static/css/me.css" th:href="@{/css/me.css}">
+  <script>
+    // 用于博客列表搜索
+    $("#search-btn").click(function () {
+      $("[name='page']").val(0);
+      loaddata();
+    });
+  </script>
 </head>
 <body>
 
@@ -68,12 +75,11 @@
                 <i class="dropdown icon"></i>
                 <div class="default text">分类</div>
                 <div class="menu">
-                  <div class="item" data-value="1">我的故事</div>
+                  <div class="item" th:each="type:${types}" th:text="${type.name}" th:data-value="${type.id}"></div>
                 </div>
               </div>
               <button id="clear-btn" class="ui compact button">clear</button>
             </div>
-
           </div>
           <!--<div class="field">-->
             <!--<div class="ui checkbox">-->
@@ -82,11 +88,12 @@
             <!--</div>-->
           <!--</div>-->
           <div class="field">
+            <!--搜索按键-->
             <button  type="button" id="search-btn" class="ui mini teal basic button"><i class="search icon"></i>搜索</button>
           </div>
         </div>
       </div>
-      <div id="table-container">
+      <div id="table-container" th:fragment="blogList">
         <table class="ui compact teal table">
           <thead>
           <tr align="center">
@@ -99,18 +106,19 @@
             <th>操作</th>
           </tr>
           </thead>
+<!--          博客类型显示列表-->
           <tbody>
-          <tr align="center">
-            <td>1</td>
-            <td>大圣，此去欲何?</td>
-            <td>我的故事</td>
-            <td>是</td>
-            <td>草稿</td>
-            <td>2020-01-02 05:20</td>
+          <tr align="center" th:each="page:${pageInfo.getList()}">
+            <td th:text="${page.id}"></td>
+            <td th:text="${page.title}"></td>
+            <td th:text="${page.type.name}"></td>
+            <td th:text="${page.recommend}"></td>
+            <td th:text="${page.published}"></td>
+            <td th:text="${page.updateTime}"></td>
             <td>
               <!--th:href="@{/admin/types/{id}/input(id=${type.id})}"-->
-              <a href="#" class="ui mini teal basic button">编辑</a>
-              <a href="#" onclick="return confirm('确定要删除该文章吗？三思啊! 删了可就没了！')" class="ui mini red basic button">删除</a>
+              <a href="#" th:href="@{/admin/blogs/{id}/input(id=${page.id})}" class="ui mini teal basic button">编辑</a>
+              <a href="#" th:href="@{/admin/blogs/{id}/delete(id=${page.id})}" onclick="return confirm('确定要删除该文章吗？三思啊! 删了可就没了！')" class="ui mini red basic button">删除</a>
             </td>
           </tr>
           </tbody>
@@ -119,19 +127,19 @@
             <th colspan="7">
               <div class="ui inverted divided stackable grid">
                 <div class="three wide column" align="center">
-                  <a class="item">上一页</a>
+                  <a class="item" th:href="@{/admin/blogs(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}" th:unless="${pageInfo.isFirstPage}">上一页</a>
                 </div>
 
                 <div class="ten wide column" align="center">
-                  <p>第 <span ></span> 页，共 <span></span> 页，有 <span></span> 篇文章</p>
+                  <p>第 <span th:text="${pageInfo.pageNum}"></span> 页，共 <span th:text="${pageInfo.pages}"></span> 页，有 <span th:text="${pageInfo.total}"></span> 篇文章</p>
                 </div>
 
                 <div class="three wide column" align="center">
-                  <a class="item">下一页</a>
+                  <a class="item" th:href="@{/admin/blogs(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}" th:unless="${pageInfo.isLastPage}">下一页</a>
                 </div>
               </div>
               <div align="center">
-                <a href="#">
+                <a href="#" th:href="@{/admin/blogs/input}">
                   <button type="button" class="ui teal button m-mobile-wide m-margin-top"><i class="pencil icon"></i>新增</button>
                 </a>
               </div>

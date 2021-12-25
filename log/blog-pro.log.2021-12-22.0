@@ -1,7 +1,7 @@
-2021-12-25 14:28:21.400  INFO 13988 --- [main] com.tasty.MyblogApplication              : Starting MyblogApplication using Java 16.0.2 on LAPTOP-KSFAKUK8 with PID 13988 (C:\Users\LovinEveryMinute\Desktop\Java\Myblog\target\classes started by LovinEveryMinute in C:\Users\LovinEveryMinute\Desktop\Java\Myblog)
-2021-12-25 14:28:21.407  INFO 13988 --- [main] com.tasty.MyblogApplication              : The following profiles are active: pro
-2021-12-25 14:28:24.280  INFO 13988 --- [main] com.tasty.MyblogApplication              : Started MyblogApplication in 3.395 seconds (JVM running for 4.034)
-2021-12-25 14:29:26.424 ERROR 13988 --- [http-nio-8008-exec-4] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
+2021-12-22 13:12:15.806  INFO 9084 --- [main] com.tasty.MyblogApplication              : Starting MyblogApplication using Java 16.0.2 on LAPTOP-KSFAKUK8 with PID 9084 (C:\Users\LovinEveryMinute\Desktop\Java\Myblog\target\classes started by LovinEveryMinute in C:\Users\LovinEveryMinute\Desktop\Java\Myblog)
+2021-12-22 13:12:15.813  INFO 9084 --- [main] com.tasty.MyblogApplication              : The following profiles are active: pro
+2021-12-22 13:12:18.558  INFO 9084 --- [main] com.tasty.MyblogApplication              : Started MyblogApplication in 3.438 seconds (JVM running for 4.434)
+2021-12-22 13:12:50.483 ERROR 9084 --- [http-nio-8008-exec-4] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
 
 com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
 
@@ -147,7 +147,7 @@ Caused by: java.net.SocketException: Connection reset
 	at com.mysql.cj.protocol.a.NativeProtocol.readMessage(NativeProtocol.java:514)
 	... 108 common frames omitted
 
-2021-12-25 14:29:26.434 ERROR 13988 --- [http-nio-8008-exec-4] c.t.c.h.ControllerExceptionHandler       : Request URL : /admin/login, Exception : {}
+2021-12-22 13:12:50.505 ERROR 9084 --- [http-nio-8008-exec-4] c.t.c.h.ControllerExceptionHandler       : Request URL : /admin/login, Exception : {}
 
 org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
 ### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
@@ -324,10 +324,15 @@ Caused by: java.net.SocketException: Connection reset
 	at com.mysql.cj.protocol.a.NativeProtocol.readMessage(NativeProtocol.java:514)
 	... 108 common frames omitted
 
-2021-12-25 14:29:49.998  INFO 10008 --- [main] com.tasty.MyblogApplication              : Starting MyblogApplication using Java 16.0.2 on LAPTOP-KSFAKUK8 with PID 10008 (C:\Users\LovinEveryMinute\Desktop\Java\Myblog\target\classes started by LovinEveryMinute in C:\Users\LovinEveryMinute\Desktop\Java\Myblog)
-2021-12-25 14:29:49.998  INFO 10008 --- [main] com.tasty.MyblogApplication              : The following profiles are active: pro
-2021-12-25 14:29:51.617  INFO 10008 --- [main] com.tasty.MyblogApplication              : Started MyblogApplication in 2.251 seconds (JVM running for 2.938)
-2021-12-25 14:30:14.522 ERROR 10008 --- [http-nio-8008-exec-9] c.t.c.h.ControllerExceptionHandler       : Request URL : /admin/blogs/search, Exception : {}
+2021-12-22 13:13:29.064  INFO 10224 --- [main] com.tasty.MyblogApplication              : Starting MyblogApplication using Java 16.0.2 on LAPTOP-KSFAKUK8 with PID 10224 (C:\Users\LovinEveryMinute\Desktop\Java\Myblog\target\classes started by LovinEveryMinute in C:\Users\LovinEveryMinute\Desktop\Java\Myblog)
+2021-12-22 13:13:29.070  INFO 10224 --- [main] com.tasty.MyblogApplication              : The following profiles are active: pro
+2021-12-22 13:13:31.076  INFO 10224 --- [main] com.tasty.MyblogApplication              : Started MyblogApplication in 2.445 seconds (JVM running for 2.969)
+2021-12-22 13:13:52.859  INFO 10224 --- [http-nio-8008-exec-2] com.tasty.common.LogAspect               : Request : RequestLog{url='http://localhost:8008/', ip='0:0:0:0:0:0:0:1', classMethod='com.tasty.controller.IndexController.index', args=[]}
+2021-12-22 13:13:52.874  INFO 10224 --- [http-nio-8008-exec-2] com.tasty.common.LogAspect               : Result : index
+2021-12-22 20:32:22.438  INFO 15868 --- [main] com.tasty.MyblogApplication              : Starting MyblogApplication using Java 16.0.2 on LAPTOP-KSFAKUK8 with PID 15868 (C:\Users\LovinEveryMinute\Desktop\Java\Myblog\target\classes started by LovinEveryMinute in C:\Users\LovinEveryMinute\Desktop\Java\Myblog)
+2021-12-22 20:32:22.440  INFO 15868 --- [main] com.tasty.MyblogApplication              : The following profiles are active: pro
+2021-12-22 20:32:23.902  INFO 15868 --- [main] com.tasty.MyblogApplication              : Started MyblogApplication in 1.875 seconds (JVM running for 2.273)
+2021-12-22 20:32:46.794 ERROR 15868 --- [http-nio-8008-exec-6] c.t.c.h.ControllerExceptionHandler       : Request URL : /admin/blogs/search, Exception : {}
 
 org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
 ### Error querying database.  Cause: java.lang.NullPointerException: Can't add values % , null
@@ -356,7 +361,7 @@ org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis
 	at com.tasty.service.Impl.BlogServiceImpl$$FastClassBySpringCGLIB$$ef18612e.invoke(<generated>)
 	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
-	at com.tasty.service.Impl.BlogServiceImpl$$EnhancerBySpringCGLIB$$de1bf1e2.searchByTitleAndType(<generated>)
+	at com.tasty.service.Impl.BlogServiceImpl$$EnhancerBySpringCGLIB$$3bce5dd.searchByTitleAndType(<generated>)
 	at com.tasty.controller.admin.BlogController.search(BlogController.java:116)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:78)
@@ -441,6 +446,3 @@ Caused by: java.lang.NullPointerException: Can't add values % , null
 	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:151)
 	... 81 common frames omitted
 
-2021-12-25 14:35:55.838  INFO 11160 --- [main] com.tasty.MyblogApplication              : Starting MyblogApplication using Java 16.0.2 on LAPTOP-KSFAKUK8 with PID 11160 (C:\Users\LovinEveryMinute\Desktop\Java\Myblog\target\classes started by LovinEveryMinute in C:\Users\LovinEveryMinute\Desktop\Java\Myblog)
-2021-12-25 14:35:55.838  INFO 11160 --- [main] com.tasty.MyblogApplication              : The following profiles are active: pro
-2021-12-25 14:35:57.148  INFO 11160 --- [main] com.tasty.MyblogApplication              : Started MyblogApplication in 1.741 seconds (JVM running for 2.133)

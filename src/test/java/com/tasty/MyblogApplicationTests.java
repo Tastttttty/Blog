@@ -4,10 +4,12 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.tasty.dao.UserDao;
 import com.tasty.model.Type;
+import com.tasty.service.BlogService;
 import com.tasty.service.Impl.UserServiceImpl;
 import com.tasty.service.TypeService;
 import com.tasty.service.UserService;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -21,6 +23,9 @@ class MyblogApplicationTests {
 
     @Autowired
     TypeService typeService;
+
+    @Autowired
+    BlogService blogService;
 
     @Test
     public void testUser(){
@@ -42,6 +47,9 @@ class MyblogApplicationTests {
         System.out.println(pageInfo.getList());
     }
 
-
-
+//    测试Blog层
+    @Test
+    public void testBlog(){
+        System.out.println(blogService.getAllBlogQuery()+"--------------");
+    }
 }
