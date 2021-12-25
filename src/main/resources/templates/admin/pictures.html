@@ -42,7 +42,9 @@
   <div class="ui attached pointing menu">
     <div class="ui container">
       <div class="right menu">
-        <a href="#" class="item">新增</a>
+        <a href="#" th:href="@{/admin/pictures/input}">
+          <button type="button" class="ui teal button m-mobile-wide m-margin-top"><i class="pencil icon"></i>新增</button>
+        </a>
         <a href="#" class="teal active item">列表</a>
       </div>
     </div>
@@ -67,35 +69,35 @@
           </tr>
         </thead>
         <tbody>
-          <tr align="center">
-            <td>1</td>
-            <td>东西冲徒步</td>
-            <td>2019年12月31日 深圳</td>
-            <td>
-              <a href="#" class="ui mini teal basic button">编辑</a>
-              <a href="#" onclick="return confirm('确定要删除该照片吗？三思啊! 删了可就没了！')" class="ui mini red basic button">删除</a>
-            </td>
-          </tr>
+        <tr align="center" th:each="picture,iterStat : ${pageInfo.list}">
+          <td th:text="${iterStat.count}">1</td>
+          <td th:text="${picture.picturename}">东西冲徒步</td>
+          <td th:text="${picture.picturetime}">2019年12月31日 深圳</td>
+          <td>
+            <a href="#" th:href="@{/admin/pictures/{id}/input(id=${picture.id})}" class="ui mini teal basic button">编辑</a>
+            <a href="#" th:href="@{/admin/pictures/{id}/delete(id=${picture.id})}" onclick="return confirm('确定要删除该照片吗？三思啊! 删了可就没了！')" class="ui mini red basic button">删除</a>
+          </td>
+        </tr>
         </tbody>
         <tfoot>
           <tr>
             <th colspan="6" >
               <div class="ui inverted divided stackable grid">
                 <div class="three wide column" align="center">
-                  <a class="item">上一页</a>
+                  <a class="item" th:href="@{/admin/pictures(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}" th:unless="${pageInfo.isFirstPage}">上一页</a>
                 </div>
 
                 <div class="ten wide column" align="center">
-                  <p>第 <span></span> 页，共 <span ></span> 页，有 <span></span> 个分类</p>
+                  <p>第 <span th:text="${pageInfo.pageNum}"></span> 页，共 <span th:text="${pageInfo.pages}"></span> 页，有 <span th:text="${pageInfo.total}"></span> 个分类</p>
                 </div>
 
                 <div class="three wide column" align="center">
-                  <a class="item">下一页</a>
+                  <a class="item" th:href="@{/admin/pictures(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}" th:unless="${pageInfo.isLastPage}">下一页</a>
                 </div>
               </div>
 
               <div align="center">
-                <a href="#">
+                <a href="#" th:href="@{/admin/pictures/input}">
                   <button type="button" class="ui teal button m-mobile-wide m-margin-top"><i class="pencil icon"></i>新增</button>
                 </a>
               </div>

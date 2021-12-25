@@ -77,8 +77,8 @@
 <!--                使用thymeleaf从后台的model中的pageInfo中拿出list，显示在前端页面-->
 
         <tbody>
-          <tr align="center" th:each="type:${pageInfo.getList()}">
-            <td th:text="${type.id}"></td>
+          <tr align="center" th:each="type,iterStat:${pageInfo.list}">
+            <td th:text="${iterStat.count}"></td>
             <td th:text="${type.name}"></td>
             <td>
               <a href="#" th:href="@{/admin/types/{id}/input(id=${type.id})}" class="ui mini teal basic button">编辑</a>

@@ -52,41 +52,47 @@
   <!--中间内容-->
   <div  class="m-container-small m-padded-tb-massive">
     <div class="ui container">
-      <form action="#" method="post" class="ui form">
-        <input type="hidden" name="id">
+
+
+
+<!--      提交表单-->
+      <form action="#" method="post" th:action="*{id}==null ? @{/admin/pictures} : @{/admin/pictures/{id}(id=*{id})} " th:object="${picture}" class="ui form">
+        <input type="hidden" name="id" th:value="*{id}">
         <div class=" field">
           <div class="ui left labeled input m-margin-top">
             <label class="ui teal basic label">图片名称</label>
-            <input type="text" name="picturename" placeholder="图片名称">
+            <input type="text" name="picturename" placeholder="图片名称" th:value="*{picturename}">
           </div>
           <div class="ui left labeled input m-margin-top">
             <label class="ui teal basic label">时间地点</label>
-            <input type="text" name="picturetime" placeholder="时间地点">
+            <input type="text" name="picturetime" placeholder="时间地点" th:value="*{picturetime}">
           </div>
           <div class="ui left labeled input m-margin-top">
             <label class="ui teal basic label">图片地址</label>
-            <input type="text" name="pictureaddress" placeholder="图片地址">
+            <input type="text" name="pictureaddress" placeholder="图片地址" th:value="*{pictureaddress}">
           </div>
           <div class="ui left labeled input m-margin-top">
             <label class="ui teal basic label">图片描述</label>
-            <input type="text" name="picturedescription" placeholder="图片描述">
+            <input type="text" name="picturedescription" placeholder="图片描述" th:value="*{picturedescription}">
           </div>
         </div>
 
         <div class="ui error message"></div>
         <!--/*/
-          <div class="ui negative message">
+          <div class="ui negative message" th:if="${#fields.hasErrors('picturename')}">
             <i class="close icon"></i>
             <div class="header">验证失败</div>
-            <p >提交信息不符合规则</p>
+            <p th:errors="*{picturename}">提交信息不符合规则</p>
           </div>
         /*/-->
         <div class="ui right aligned container">
           <button type="button" class="ui button" onclick="window.history.go(-1)" >返回</button>
           <button class="ui teal submit button">提交</button>
         </div>
-
       </form>
+
+
+
     </div>
   </div>
 
