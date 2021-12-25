@@ -69,38 +69,38 @@
           </tr>
         </thead>
         <tbody>
-          <tr align="center" >
-            <td>1</td>
-            <td>ONESTAR</td>
-            <td>https://onestar.newstar.net.cn/</td>
-            <td>https://onestar.newstar.net.cn/</td>
-            <td>2020-01-02 09:45</td>
-            <!--th:text="${#dates.format(message.createTime,'yyyy-MM-dd HH:mm')}"-->
-            <td>
-              <a href="#" class="ui mini teal basic button">编辑</a>
-              <a href="#" onclick="return confirm('确定要删除该友链吗？三思啊! 删了可就没了！')" class="ui mini red basic button">删除</a>
-            </td>
-          </tr>
+        <tr align="center" th:each="friendlink,iterStat : ${pageInfo.list}">
+          <td th:text="${iterStat.count}">1</td>
+          <td th:text="${friendlink.blogname}">ONESTAR</td>
+          <td th:text="${friendlink.blogaddress}">https://onestar.newstar.net.cn/</td>
+          <td th:text="${friendlink.pictureaddress}">https://onestar.newstar.net.cn/</td>
+          <td th:text="${#dates.format(friendlink.createTime,'yyyy-MM-dd HH:mm')}">2020-01-02 09:45</td>
+          <!--th:text="${#dates.format(message.createTime,'yyyy-MM-dd HH:mm')}"-->
+          <td>
+            <a href="#" th:href="@{/admin/friendlinks/{id}/input(id=${friendlink.id})}" class="ui mini teal basic button">编辑</a>
+            <a href="#" th:href="@{/admin/friendlinks/{id}/delete(id=${friendlink.id})}" onclick="return confirm('确定要删除该友链吗？三思啊! 删了可就没了！')" class="ui mini red basic button">删除</a>
+          </td>
+        </tr>
         </tbody>
         <tfoot>
           <tr>
             <th colspan="6" >
               <div class="ui inverted divided stackable grid">
                 <div class="three wide column" align="center">
-                  <a class="item">上一页</a>
+                  <a class="item" th:href="@{/admin/friendlinks(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}" th:unless="${pageInfo.isFirstPage}">上一页</a>
                 </div>
 
                 <div class="ten wide column" align="center">
-                  <p>第 <span></span> 页，共 <span></span> 页，有 <span></span> 个分类</p>
+                  <p>第 <span th:text="${pageInfo.pageNum}"></span> 页，共 <span th:text="${pageInfo.pages}"></span> 页，有 <span th:text="${pageInfo.total}"></span> 个分类</p>
                 </div>
 
                 <div class="three wide column" align="center">
-                  <a class="item">下一页</a>
+                  <a class="item" th:href="@{/admin/friendlinks(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}" th:unless="${pageInfo.isLastPage}">下一页</a>
                 </div>
               </div>
 
               <div align="center">
-                <a href="#">
+                <a href="#" th:href="@{/admin/friendlinks/input}">
                   <button type="button" class="ui teal button m-mobile-wide m-margin-top"><i class="pencil icon"></i>新增</button>
                 </a>
               </div>

@@ -52,31 +52,39 @@
   <!--中间内容-->
   <div  class="m-container-small m-padded-tb-massive">
     <div class="ui container">
-      <form action="#" method="post" class="ui form">
-        <input type="hidden" name="id">
+
+
+
+<!--          表单提交-->
+      <form action="#" method="post" th:action="*{id}==null ? @{/admin/friendlinks} : @{/admin/friendlinks/{id}(id=*{id})} " th:object="${friendlink}" class="ui form">
+<!--        获取id-->
+        <input type="hidden" name="id" th:value="*{id}">
         <div class=" field">
           <div class="ui left labeled input m-margin-top">
             <label class="ui teal basic label">博客名称</label>
-            <input type="text" name="blogname" placeholder="博客名称">
+            <input type="text" name="blogname" placeholder="博客名称" th:value="*{blogname}" >
           </div>
           <div class="ui left labeled input m-margin-top">
             <label class="ui teal basic label">博客地址</label>
-            <input type="text" name="blogaddress" placeholder="博客地址">
+            <input type="text" name="blogaddress" placeholder="博客地址" th:value="*{blogaddress}" >
           </div>
           <div class="ui left labeled input m-margin-top">
             <label class="ui teal basic label">图片地址</label>
-            <input type="text" name="pictureaddress" placeholder="图片地址">
+            <input type="text" name="pictureaddress" placeholder="图片地址" th:value="*{pictureaddress}" >
           </div>
         </div>
 
         <div class="ui error message"></div>
-        <div class="ui mini negative message">提示：不能添加重复的友链</div>
+        <div class="ui mini negative message" th:unless="${#strings.isEmpty(message)}" th:text="|提示： ${message}">提示：不能添加重复的友链</div>
         <div class="ui right aligned container">
           <button type="button" class="ui button" onclick="window.history.go(-1)" >返回</button>
           <button class="ui teal submit button">提交</button>
         </div>
-
       </form>
+
+
+
+
     </div>
   </div>
 
